@@ -225,7 +225,7 @@ Note: modeling measurement noise as Gaussian is ok, for example, when there are 
 
 # (Filtered) Recommended Resources
 
-- [Dan Simon, Optimal State Estimation (2006)](https://onlinelibrary.wiley.com/doi/book/10.1002/0470045345) Chapter 3
+- [Dan Simon, Optimal State Estimation (2006)](https://onlinelibrary.wiley.com/doi/book/10.1002/0470045345) Chapter 3 on Least Squares Estimators
 
 -  [interactive explanation](http://mfviz.com/central-limit/) of the Central Limit Theorem by Michael Freeman
 
