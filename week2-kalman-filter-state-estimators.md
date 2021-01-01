@@ -57,13 +57,52 @@ We can think of the KF as a technique to **fuse information** from different sen
 
 <img src="/home/jonasmmiguel/.config/Typora/typora-user-images/image-20201224214820290.png" alt="image-20201224214820290" style="zoom:50%;" />
 
+
+
+# Kalman Filter: the Best Linear Unbiased Estimator (BLUE)
+
+Meaning: 
+
+- the KF is the best among all linear filters providing an unbiased, consistent estimation
+
+Meaning:
+
+​	$\checkmark$ given white uncorrelated zero mean noise
+
+​	$\therefore$ the KF estimator produces (1) **unbiased** estimates with (2) the minimum possible variance (**consistent**)
+
+
+
+​	Unbiased because:
+
+- $\mathbb{E}[\mathbf{\hat{e}}_{k|k}] = 0$
+- i.e. $\mathbb{E}[\mathbf{{x}}_{k}-\mathbf{\hat{x}}_{k|k}] = 0$
+- i.e. the expected posterior error converges to zero, over sufficient $k$ "predict-measurement-correction" steps
+
+​     Consistent because:
+
+- $\mathbb{E}[\mathbf{\hat{e}}_{k|k}^2] = \hat{\mathbf{P}}_k$
+- i.e. (for a scalar state) the filter reports a variance $\hat{\mathbf{P}}_k$ matching* the empirical variance of our estimate $\mathbb{E}[\mathbf{\hat{e}}_{k|k}^2]$
+  - i.e. converging over sufficient $k$ measurements
+- i.e. the filter is neither overconfident (optimistically reports smaller covariances than the empirical variance our our estimate) nor underconfident
+
+
+
+
+
+# Extended Kalman Filter (EKF)
+
+- this is sort of a bootstrap method
+- we linearize the nonlinear system around the Kalman filter estimate, and the Kalman filter estimate is based on the linearized system
+
 # Recommended Resources
 
-|                                                  |                                                              |
-| ------------------------------------------------ | ------------------------------------------------------------ |
-| illustrative, engaging intro to LKF (blog post)  | https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/ |
-| Extensive & detailed review of KF in chp 3 sec 3 | [Timothy D. Barfoot, State Estimation for Robotics (2017)](http://asrl.utias.utoronto.ca/~tdb/bib/barfoot_ser17.pdf): |
-| Detailed review of KF in chp 5 sec 1             | [Dan Simon, Optimal State Estimation (2006)](https://onlinelibrary.wiley.com/doi/book/10.1002/0470045345) |
-| Compilation of great resources on KF             | https://www.cs.unc.edu/~welch/kalman/                        |
-| LKS seminal paper                                | https://www.cs.unc.edu/~welch/kalman/kalmanPaper.html        |
+|                                                   |                                                              |
+| ------------------------------------------------- | ------------------------------------------------------------ |
+| illustrative, engaging intro to LKF (blog post)   | https://www.bzarg.com/p/how-a-kalman-filter-works-in-pictures/ |
+| Extensive & detailed review of KF in chp 3 sec 3  | [Timothy D. Barfoot, State Estimation for Robotics (2017)](http://asrl.utias.utoronto.ca/~tdb/bib/barfoot_ser17.pdf): chp 3 sec 3 |
+| KF: intuitive derivation, properties, limitations | [Timothy D. Barfoot, State Estimation for Robotics (2017)](http://asrl.utias.utoronto.ca/~tdb/bib/barfoot_ser17.pdf): chp5 |
+| Detailed review of KF in chp 5 sec 1              | [Dan Simon, Optimal State Estimation (2006)](https://onlinelibrary.wiley.com/doi/book/10.1002/0470045345), chp 5 sec 1 |
+| Compilation of great resources on KF              | https://www.cs.unc.edu/~welch/kalman/                        |
+| LKS seminal paper                                 | https://www.cs.unc.edu/~welch/kalman/kalmanPaper.html        |
 

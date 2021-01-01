@@ -9,6 +9,8 @@ The method of least squares
 
 # 1. Ordinary & Weighted Least Squares Estimator
 
+Estimator: a rule for computing estimates of a parameter $\theta_0$
+
 OLS / WLS: Parameter Estimators, i.e. methods for estimating (static) parameters
 
 ["(static) parameters" = variables of interest that remain (mostly) constant from the first to the last measurement] 
@@ -174,9 +176,9 @@ Key stepstones in reformulating the OLS into a *recursive* procedure
 - the variances in the covariance matrix diagonal tends to shrink as new measurements are available, thus $Tr(\boldsymbol{P})\rightarrow minimum$ as $k\rightarrow \infty$
 - the **innovation** term $(\boldsymbol{y}_k-\boldsymbol{H}_{k-1}\boldsymbol{\hat{x}}_{k-1})$, which quantifies the how much information was brought in the last measurement 
   - aka. **correction term**
-- the **estimator gain matrix** $\boldsymbol{K}_{k}$, which basically prescribes how much importance we give to the measurement $k$ in relation to previous ones for computing the estimate
-  - the expression for $\mathbf{K}_k$ is obtained by minimizing $Tr(\mathbf{P}_k)$: the sum of the variances of the estimation errors at time $k$
-  - this is in accordance with the idea that the 
+- the **estimator gain matrix** $\boldsymbol{K}_{k}$, which basically balances how much the filter should trust the *new measurements* versus the *model* (e.g. according to how high uncertainties in each of these are expected to be) [^4]
+  - uncertainties: disturbances in our system, measurement noise (innacuracy) 
+  - the expression for $\mathbf{K}_k$ is obtained by minimizing $Tr(\mathbf{P}_k)$: the sum of the variances of the estimation errors at time $k$ 
 - the **linear recursive update** rule: $\boldsymbol{\hat{x}}_{k} \leftarrow \boldsymbol{\hat{x}}_{k-1} + \boldsymbol{K}_{k}(\boldsymbol{y}_k-\boldsymbol{H}_{k-1}\boldsymbol{\hat{x}}_{k-1})$
   - note: if either the innovation or the gain is zero, then new measurement effectivelly does not change our estimate
 
@@ -199,6 +201,8 @@ Overall procedure
    | 1.   | Calculate the gain term        | $\mathbf{K}_k = \mathbf{P}_{k-1}\mathbf{H}_k^T\left(\mathbf{H}_k\mathbf{P}_{k-1}\mathbf{H}_k^T + \mathbf{R}_k\right)^{-1}$ |
    | 2.   | Update the parameter estimate  | $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}_{k-1} + \mathbf{K}_k\left(\mathbf{y}_k - \mathbf{H}_k\hat{\mathbf{x}}_{k-1}\right)$ |
    | 3.   | Update the covariance estimate | $\mathbf{P}_k = \left(\mathbf{I} - \mathbf{K}_k\mathbf{H}_k\right)\mathbf{P}_{k-1}$ |
+
+[^4]: The Kalman Filter [Control Bootcamp] by Steve Brunton https://youtu.be/s_9InuQAx-g?t=133
 
 # 3. Why squared loss?
 
@@ -242,7 +246,9 @@ Note: modeling measurement noise as Gaussian is ok, for example, when there are 
 
 |                                                              |                                                              |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Steven Brunton introduces Kalman Filter: intuition of the Kalman gain matrix, and how it can be determined for a linear system | https://youtu.be/s_9InuQAx-g                                 |
 | graduate-level statistics                                    | https://online.stat.psu.edu/stat414/lesson/introduction-stat-414 |
 | how to systematically draw e.g. 1000 random numbers that follow a particular probability distribution? | https://online.stat.psu.edu/stat414/lesson/22/22.4           |
 
  
+
